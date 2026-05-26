@@ -1,29 +1,53 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard — Empresa</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: sans-serif; background: #0d0f14; color: #e8eaf0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-        .card { background: #13161e; border: 1px solid #252a38; border-radius: 12px; padding: 40px; text-align: center; max-width: 400px; width: 100%; }
-        .badge { display: inline-block; background: rgba(59,130,246,.15); color: #3b82f6; border: 1px solid rgba(59,130,246,.3); border-radius: 99px; padding: 4px 14px; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 20px; }
-        h1 { font-size: 1.5rem; margin-bottom: 8px; }
-        p { color: #6b7590; margin-bottom: 32px; }
-        form button { background: #3b82f6; color: #fff; border: none; border-radius: 8px; padding: 10px 24px; cursor: pointer; font-size: .9rem; }
-        form button:hover { opacity: .85; }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <div class="badge">Empresa</div>
-        <h1>Olá, {{ Auth::user()->name }}!</h1>
-        <p>Você está logado como <strong>empresa</strong>.<br/>O dashboard completo está em construção.</p>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit">Sair</button>
-        </form>
+@extends('layouts.admin')
+@section('title', 'Dashboard — Empresa')
+@section('content')
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+        <div class="page-title">Dashboard</div>
+        <div class="page-sub">Bem-vindo de volta, {{ Auth::user()->name }}!</div>
     </div>
-</body>
-</html>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="icon" style="background:rgba(59,130,246,.15);color:#3b82f6"><i class="bi bi-people-fill"></i></div>
+            <div class="value">—</div>
+            <div class="label">Fornecedores</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="icon" style="background:rgba(52,211,153,.15);color:#34d399"><i class="bi bi-file-earmark-text-fill"></i></div>
+            <div class="value">—</div>
+            <div class="label">Documentos</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="icon" style="background:rgba(250,204,21,.15);color:#facc15"><i class="bi bi-graph-up-arrow"></i></div>
+            <div class="value">—</div>
+            <div class="label">Análises</div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="stat-card">
+            <div class="icon" style="background:rgba(6,182,212,.15);color:#06b6d4"><i class="bi bi-check2-circle"></i></div>
+            <div class="value">—</div>
+            <div class="label">Aprovados</div>
+        </div>
+    </div>
+</div>
+
+<div class="table-card">
+    <div class="table-header">
+        <h6><i class="bi bi-clock-history me-2" style="color:#3b82f6"></i>Atividade Recente</h6>
+    </div>
+    <div style="padding:40px;text-align:center;color:var(--muted)">
+        <i class="bi bi-inbox" style="font-size:2rem;display:block;margin-bottom:8px"></i>
+        Nenhuma atividade recente.
+    </div>
+</div>
+
+@endsection
