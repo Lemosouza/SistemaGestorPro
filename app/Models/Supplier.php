@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
-        protected $fillable = [
+    use HasFactory;
+
+    protected $fillable = [
         'user_id',
         'document',
+        'category',
+        'contact_name',
+        'contact_email',
+        'contact_phone',
+        'address',
+        'notes',
         'status',
     ];
 
@@ -26,5 +34,18 @@ class Supplier extends Model
     public function analyses()
     {
         return $this->hasMany(Analysis::class);
+    }
+
+    public function getGeneralStatusAttribute(): string
+    {
+        if ($this->status !== 'active') {
+            return 'irregular';
+        }
+
+        $hasExpired = $this->documents->contains(function ($document) {
+            return $document->calculated_status === 'expired';
+        });
+
+        return $hasExpired ? 'irregular' : 'regular';
     }
 }

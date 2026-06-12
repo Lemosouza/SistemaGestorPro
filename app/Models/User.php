@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'password' => 'hashed',
-        'role'     => 'string',
+        'role' => 'string',
     ];
 
     public function supplier()
@@ -37,5 +37,10 @@ class User extends Authenticatable
     public function company()
     {
         return $this->hasOne(Company::class);
+    }
+
+    public function systemLogs()
+    {
+        return $this->hasMany(SystemLog::class);
     }
 }
