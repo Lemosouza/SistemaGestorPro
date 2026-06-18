@@ -1,0 +1,75 @@
+SistemaGestorPro - versão ajustada apenas no front-end
+
+O que foi ajustado:
+- Os valores internos de permissão continuam em inglês: admin, supplier e company.
+- A tela mostra os nomes em português: Administrador, Fornecedor e Empresa.
+- Os logs mostram ações em português, como Cadastro, Entrada e Saída.
+- Nenhuma regra de permissão foi alterada no backend.
+
+Comandos para rodar no Windows PowerShell:
+
+1) Entrar na pasta do projeto:
+cd "Z:\SGP_AJUSTADO_FRONT_PT"
+
+2) Instalar dependências:
+composer install
+
+3) Criar o .env se ainda não existir:
+copy .env.example .env
+notepad .env
+
+Configure o banco no .env, exemplo:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sistema_gestor_pro
+DB_USERNAME=root
+DB_PASSWORD=
+
+4) Ligar o MySQL/XAMPP.
+
+5) Gerar chave e limpar cache:
+php artisan key:generate
+php artisan optimize:clear
+
+6) Rodar migrations:
+php artisan migrate
+
+7) Garantir que as permissões internas estejam corretas, caso tenham sido alteradas antes:
+php artisan tinker
+
+Cole no tinker:
+use Illuminate\Support\Facades\DB;
+DB::table('users')->where('role', 'Administrador')->update(['role' => 'admin']);
+DB::table('users')->where('role', 'Fornecedor')->update(['role' => 'supplier']);
+DB::table('users')->where('role', 'Empresa')->update(['role' => 'company']);
+exit
+
+8) Criar ou corrigir usuário admin:
+php artisan tinker
+
+Cole no tinker:
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+DB::table('users')->updateOrInsert(
+    ['email' => 'admin@admin.com'],
+    [
+        'name' => 'Admin Sistema',
+        'phone' => '(44) 44444-4444',
+        'role' => 'admin',
+        'password' => Hash::make('12345678'),
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]
+);
+exit
+
+9) Subir servidor:
+php artisan serve --host=0.0.0.0 --port=8000
+
+Acesse:
+http://127.0.0.1:8000/login
+
+Login:
+admin@admin.com
+12345678
