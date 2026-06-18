@@ -34,7 +34,6 @@ class SystemLog extends Model
                 'user_agent' => substr((string) request()?->userAgent(), 0, 255),
             ]);
         } catch (\Throwable $e) {
-            // O log não pode impedir o fluxo principal do sistema.
         }
     }
 }

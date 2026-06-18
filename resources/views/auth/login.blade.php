@@ -369,7 +369,6 @@
 
 <div class="page">
 
-    {{-- ── Left Panel ── --}}
     <div class="panel-left">
         <div class="grid-lines"></div>
 
@@ -404,7 +403,6 @@
         </div>
     </div>
 
-    {{-- ── Right Form Panel ── --}}
     <div class="panel-right">
         <div class="form-container">
 
@@ -430,7 +428,6 @@
             <form action="{{ route('login.post') }}" method="POST" id="loginForm" novalidate>
                 @csrf
 
-                {{-- E-mail --}}
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <div class="input-wrap">
@@ -454,7 +451,6 @@
                     @enderror
                 </div>
 
-                {{-- Senha --}}
                 <div class="form-group">
                     <label for="password">Senha</label>
                     <div class="input-wrap">
@@ -477,13 +473,12 @@
                     @enderror
                 </div>
 
-                {{-- Remember + Forgot --}}
                 <div class="form-extras">
                     <label class="remember">
                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />
                         Lembrar de mim
                     </label>
-                    {{-- <a href="{{ route('password.request') }}" class="forgot">Esqueci a senha</a> --}}
+
                 </div>
 
                 <button type="submit" class="btn-submit" id="submitBtn">

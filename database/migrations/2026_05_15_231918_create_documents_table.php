@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('documents', function (Blueprint $table) {
@@ -16,14 +13,11 @@ return new class extends Migration
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
             $table->string('document_type');
             $table->timestamp('upload_date')->nullable();
-            $table->string('status'); // pending, approved, rejected
+            $table->string('status');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('documents');

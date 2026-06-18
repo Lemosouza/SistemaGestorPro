@@ -485,7 +485,6 @@
 
 <div class="page">
 
-    {{-- ── Left decorative panel ── --}}
     <div class="panel-left">
         <div class="grid-lines"></div>
 
@@ -520,7 +519,6 @@
         </div>
     </div>
 
-    {{-- ── Right form panel ── --}}
     <div class="panel-right">
         <div class="form-container">
 
@@ -529,7 +527,6 @@
                 <p>Já tem uma conta? <a href="{{ route('login') }}">Entrar</a></p>
             </div>
 
-            {{-- Flash messages --}}
             @if(session('success'))
                 <div class="alert alert-success">
                     <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -547,7 +544,6 @@
             <form action="{{ route('register.post') }}" method="POST" id="registerForm" novalidate>
                 @csrf
 
-                {{-- Name + Phone --}}
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Nome</label>
@@ -592,7 +588,6 @@
                     </div>
                 </div>
 
-                {{-- Email --}}
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <div class="input-wrap">
@@ -616,7 +611,6 @@
                     @enderror
                 </div>
 
-                {{-- Password --}}
                 <div class="form-group">
                     <label for="password">Senha</label>
                     <div class="input-wrap">
@@ -646,7 +640,6 @@
                     @enderror
                 </div>
 
-                {{-- Confirm Password --}}
                 <div class="form-group">
                     <label for="password_confirmation">Confirmar senha</label>
                     <div class="input-wrap">
@@ -665,7 +658,6 @@
                     </div>
                 </div>
 
-                {{-- Role --}}
                 <div style="margin-bottom: 24px;">
                     <div class="section-label">Perfil de acesso</div>
                     <div class="role-grid">
